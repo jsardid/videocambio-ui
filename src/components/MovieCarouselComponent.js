@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import "./movieCarouselComponent.css";
+import "./MovieCarouselComponent.css";
 import { Movie } from "./MovieComponent";
 
 export class MovieCarousel extends Component {
