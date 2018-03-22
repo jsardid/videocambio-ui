@@ -1,12 +1,10 @@
-import React from "react";
-import "./Movie.css";
+import React from 'react'
 
-export const Movie = props => {
+export const Movie = (props) => {
   return (
     <div>
-      <p>Movie</p>
+      <h1>{props.match.params.number}</h1>
     </div>
-  );
-};
-
+  )
+}
 

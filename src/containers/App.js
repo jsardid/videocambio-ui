@@ -6,7 +6,7 @@ import { Movie } from "./../pages/Movie";
 const App = () => (
   <Switch>
     <Route exact path='/' component={Home}/>
-    <Route exact path='/movie' component={Movie}/>
+    <Route exact path='/movies/:number' component={Movie}/>
   </Switch>
 )
 
