@@ -1,13 +1,23 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import { Home } from "./../pages/Home";
-import { Movie } from "./../pages/Movie";
+import React from "react";
+import { Main } from "./../containers/Main";
+import { connect } from "react-redux";
+import { fetchData } from "./../actions/actions";
+import { withRouter } from "react-router-dom";
 
-const App = () => (
-  <Switch>
-    <Route exact path='/' component={Home}/>
-    <Route exact path='/movies/:number' component={Movie}/>
-  </Switch>
-)
+class App extends React.Component {
+  render() {
+    return <Main />;
+  }
 
-export default App
+  componentDidMount() {
+    this.props.fetchData();
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchData: () => dispatch(fetchData())
+  };
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(App));
