@@ -1,5 +1,4 @@
 import React from "react";
-import "./Home.css";
-import CarouselLists from "./../components/CarouselListsComponent";
+import CarouselListsContainer from "./../containers/CarouselListsContainer";
 
-export const Home = () => <CarouselLists/>;
+export const Home = () => <CarouselListsContainer/>;

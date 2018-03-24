@@ -1,8 +1,8 @@
 import React from "react";
-import "./MovieComponent.css";
+import "./MovieResult.css";
 import { Link } from "react-router-dom";
 
-export const Movie = props => {
+export const MovieResult = props => {
   return (
     <div>
       <Link to={"/movies/"+props.movie.id}>

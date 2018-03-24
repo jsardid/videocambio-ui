@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import "./MovieCarouselComponent.css";
-import { Movie } from "./MovieComponent";
+import "./MovieCarousel.css";
+import { MovieResult } from "./MovieResult";
 
 export class MovieCarousel extends Component {
   render() {
@@ -25,7 +25,7 @@ export class MovieCarousel extends Component {
               {this.props.movies.slice(0, 20).map((movie, i) => {
                 return (
                   <div>
-                    <Movie key={i} movie={movie} />
+                    <MovieResult key={i} movie={movie} />
                   </div>
                 );
               })}

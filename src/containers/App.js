@@ -1,12 +1,19 @@
 import React from "react";
-import { Main } from "./../containers/Main";
+import { Main } from "./../components/Main";
+import { Header } from "./../components/Header";
 import { connect } from "react-redux";
 import { fetchData } from "./../actions/actions";
 import { withRouter } from "react-router-dom";
+import "./App.css";
 
 class App extends React.Component {
   render() {
-    return <Main />;
+    return (
+      <div>
+        <Header />
+        <Main />
+      </div>
+    );
   }
 
   componentDidMount() {
