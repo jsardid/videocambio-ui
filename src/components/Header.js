@@ -1,8 +1,8 @@
 import React from "react";
-import AppBar from "material-ui/AppBar";
+import "./Header.css";
 
 export const Header = () => (
-  <AppBar position="static">
-    <p>test</p>
-  </AppBar>
+  <header position="static">
+    <img src="logo.png" className="logo" alt="Video Cambio 100 Logo" />
+  </header>
 );

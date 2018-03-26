@@ -13,8 +13,52 @@ export class MovieCarousel extends Component {
       slidesToScroll: 1,
       adaptiveHeight: true,
       swipeToSlide: true,
-      lazyLoad: true,
-      arrows: true
+      lazyLoad: false,
+      arrows: true,
+      responsive: [
+        {
+          breakpoint: 1600,
+          settings: {
+            slidesToShow: 9
+          }
+        },
+        {
+          breakpoint: 1400,
+          settings: {
+            slidesToShow: 8
+          }
+        },
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 7
+          }
+        },
+        {
+          breakpoint: 1000,
+          settings: {
+            slidesToShow: 6
+          }
+        },
+        {
+          breakpoint: 800,
+          settings: {
+            slidesToShow: 5
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 4
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 3
+          }
+        }
+      ]
     };
     return (
       <div className="carousel">

@@ -1,3 +1,10 @@
+html {
+  height: 100%;
+}
+
 body {
-  background-color: #cacaca
+  margin-top: 120px !important;
+  background: linear-gradient(rgb(72, 74, 102), rgb(37, 39, 73));
+  background-attachment: fixed;
+
 }

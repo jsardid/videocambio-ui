@@ -1,3 +1,11 @@
 .poster{
-    height: 180px;
+    height: 220px;
+width: 150px;}
+
+.movie-link{
+    display:inline-block;
+}
+
+.movie-link-container{
+    text-align: center;
 }

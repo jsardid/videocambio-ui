@@ -3,6 +3,14 @@
 
 .carousel {
   width: 100%;
+  margin-top: 30px;
+  padding: 50px 0px 20px 0px;
+  background-color: rgba(0, 0, 0, 0.096);
+}
+.slick-arrow {
+  height: 100%;
+  background-color: #ffffff12;
+  width: 20px;
 }
 
 .slick-prev {

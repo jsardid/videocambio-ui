@@ -4,7 +4,7 @@ import { MovieCarousel } from "./../components/MovieCarousel";
 
 const CarouselLists = props => {
   return (
-    <div className="mainContent">
+    <div className="carousel-lists">
       {props.lists.map((list, i) => {
         return (
           <MovieCarousel

@@ -5,6 +5,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import configureStore from "./configureStore";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import "./index.css";
 
 const store = configureStore();
 
