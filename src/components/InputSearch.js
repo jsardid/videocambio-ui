@@ -22,10 +22,14 @@ class InputSearch extends Component {
   };
 
   triggerSearch = value => {
-    if (this.props.location.pathname === "/search") {
-      this.props.history.replace("/search?query=" + value);
+    if (!value) {
+      this.props.history.push("" + value);
     } else {
-      this.props.history.push("/search?query=" + value);
+      if (this.props.location.pathname === "/search") {
+        this.props.history.replace("/search?query=" + value);
+      } else {
+        this.props.history.push("/search?query=" + value);
+      }
     }
   };
 
