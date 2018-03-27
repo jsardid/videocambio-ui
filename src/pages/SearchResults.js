@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { MovieCarousel } from "./../components/MovieCarousel";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
-import removeAccents from "remove-accents";
+import diacritics from 'diacritics';
+const removeDiacritics = diacritics.remove;
 
 class SearchResultsComponent extends Component {
   render() {
@@ -14,7 +15,7 @@ class SearchResultsComponent extends Component {
     const parsed = queryString.parse(this.props.location.search);
     return parsed.query
       ? this.props.movies.data.popular.filter(movie => {
-          return movie.title.toLowerCase().includes(parsed.query.toLowerCase());
+          return removeDiacritics(movie.title).toLowerCase().includes(removeDiacritics(parsed.query).toLowerCase());
         })
       : [];
   }
