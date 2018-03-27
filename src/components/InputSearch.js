@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import Icon from "material-ui/Icon";
+import "./InputSearch.css";
 
 const WAIT_INTERVAL = 1000;
 const ENTER_KEY = 13;
@@ -34,7 +36,16 @@ class InputSearch extends Component {
   };
 
   render() {
-    return <input type="text" onChange={this.handleChange} />;
+    return (
+      <div className="search">
+        <input
+          className="input-search"
+          type="text"
+          onChange={this.handleChange}
+        />
+        <Icon className="search-icon">search</Icon>
+      </div>
+    );
   }
 }
 
