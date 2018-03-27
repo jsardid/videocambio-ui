@@ -6,6 +6,8 @@ header {
   top: 0px;
   z-index: 1;
   box-shadow: 0px 0px 10px #000000;
+  display: flex;
+  align-items: center;
 }
 
 .logo {
