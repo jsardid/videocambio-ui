@@ -32,7 +32,8 @@ export default function moviesReducer(state = initialState, action) {
         isFetching: false,
         data: {
           moviesCollection: action.data.reduce((map, obj) => {
-            return (map[obj.id] = obj);
+            map[obj.id] = obj;
+            return map;
           }, {}),
           popular: action.data.slice().sort((a, b) => {
             return a.popularity < b.popularity
