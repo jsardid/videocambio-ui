@@ -32,18 +32,18 @@ export default function moviesReducer(state = initialState, action) {
         isFetching: false,
         data: {
           moviesCollection: action.data.reduce((map, obj) => {
-            map[obj.id] = obj;
+            map[obj.tmdb_id] = obj;
             return map;
           }, {}),
           popular: action.data.slice().sort((a, b) => {
-            return a.popularity < b.popularity
+            return a.tmdb_popularity < b.tmdb_popularity
               ? 1
-              : b.popularity < a.popularity ? -1 : 0;
+              : b.tmdb_popularity < a.tmdb_popularity ? -1 : 0;
           }),
           new: action.data.slice().sort((a, b) => {
-            return a.release_date < b.release_date
+            return a.tmdb_release_date < b.tmdb_release_date
               ? 1
-              : b.release_date < a.release_date ? -1 : 0;
+              : b.tmdb_release_date < a.tmdb_release_date ? -1 : 0;
           })
         }
       };

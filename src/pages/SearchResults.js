@@ -15,7 +15,7 @@ class SearchResultsComponent extends Component {
     const parsed = queryString.parse(this.props.location.search);
     return parsed.query
       ? this.props.movies.data.popular.filter(movie => {
-          return removeDiacritics(movie.title).toLowerCase().includes(removeDiacritics(parsed.query).toLowerCase());
+          return removeDiacritics(movie.tmdb_title).toLowerCase().includes(removeDiacritics(parsed.query).toLowerCase());
         })
       : [];
   }
