@@ -8,6 +8,7 @@ const BackgroundImage = styled.div`
   background-image: ${props => "url(" + props.backgroundImage + ")"};
   background-size: cover;
   background-position:  center;
+  background-color: #484a76;
 `;
 
 const BackgroundGradient = styled.div`
@@ -29,7 +30,7 @@ export const MovieDetail = props => {
   return (
     <BackgroundImage
       backgroundImage={
-        "https://image.tmdb.org/t/p/w1280/" + props.movie.tmdb_backdrop_path
+        "https://image.tmdb.org/t/p/original/" + props.movie.tmdb_backdrop_path
       }
     >
       <BackgroundGradient>

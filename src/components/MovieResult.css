@@ -1,6 +1,8 @@
 .poster{
-    height: 220px;
-width: 150px;}
+    height: 300px;
+    width: 200px;
+    background-color: #333;
+}
 
 .movie-link{
     display:inline-block;

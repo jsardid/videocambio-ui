@@ -8,7 +8,7 @@ export const MovieResult = props => {
       <Link className="movie-link" to={"/movies/"+props.movie.tmdb_id}>
         <img
           className="poster"
-          src={"https://image.tmdb.org/t/p/w154/" + props.movie.tmdb_poster_path}
+          src={"https://image.tmdb.org/t/p/w300/" + props.movie.tmdb_poster_path}
           alt="poster"
         />
       </Link>
