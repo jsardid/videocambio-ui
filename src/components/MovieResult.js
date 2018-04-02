@@ -10,6 +10,7 @@ export const MovieResult = props => {
           className="poster"
           src={"https://image.tmdb.org/t/p/w300/" + props.movie.tmdb_poster_path}
           alt="poster"
+          onLoad={() => window.dispatchEvent(new Event('resize'))} // Fix for react slick
         />
       </Link>
     </div>

@@ -68,8 +68,8 @@ export class MovieCarousel extends Component {
             <Slider {...settings}>
               {this.props.movies.slice(0, 20).map((movie, i) => {
                 return (
-                  <div>
-                    <MovieResult key={i} movie={movie} />
+                  <div key={i}>
+                    <MovieResult movie={movie} />
                   </div>
                 );
               })}
