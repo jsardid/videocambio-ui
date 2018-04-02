@@ -1,10 +1,28 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Icon from "material-ui/Icon";
-import "./InputSearch.css";
+import styled from "styled-components";
 
 const WAIT_INTERVAL = 1000;
 const ENTER_KEY = 13;
+
+const SearchContainer = styled.div`
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+`;
+
+const SearchInput = styled.input`
+  width: 500px;
+  height: 32px;
+  padding-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+`;
+
+const SearchIcon = styled(Icon)`
+  position: relative;
+  left: -30px;
+`;
 
 class InputSearch extends Component {
   componentWillMount() {
@@ -37,14 +55,10 @@ class InputSearch extends Component {
 
   render() {
     return (
-      <div className="search">
-        <input
-          className="input-search"
-          type="text"
-          onChange={this.handleChange}
-        />
-        <Icon className="search-icon">search</Icon>
-      </div>
+      <SearchContainer>
+        <SearchInput type="text" onChange={this.handleChange} />
+        <SearchIcon>search</SearchIcon>
+      </SearchContainer>
     );
   }
 }
