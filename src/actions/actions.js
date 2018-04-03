@@ -3,7 +3,7 @@ import {
   FETCHING_DATA_SUCCESS,
   FETCHING_DATA_FAILURE
 } from "./../constants/constants";
-import { getAllmovies } from "./../services/videoCambioApi";
+import { getAllMovies } from "./../services/videoCambioApi";
 
 export function getData() {
   return {
@@ -27,7 +27,7 @@ export function getDataFailure() {
 export function fetchData() {
   return dispatch => {
     dispatch(getData());
-    getAllmovies()
+    getAllMovies()
       .then(data => {
         dispatch(getDataSuccess(data));
       })
