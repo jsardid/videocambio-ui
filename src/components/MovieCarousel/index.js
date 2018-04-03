@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import "./MovieCarousel.css";
+import "./customSlick.css";
 import { MovieResult } from "./MovieResult";
+import styled from "styled-components";
+
+const Carousel = styled.div`
+  width: 100%;
+  margin-top: 30px;
+  padding: 50px 0px 20px 0px;
+  background-color: rgba(0, 0, 0, 0.096);
+`;
 
 export class MovieCarousel extends Component {
   render() {
@@ -61,7 +69,7 @@ export class MovieCarousel extends Component {
       ]
     };
     return (
-      <div className="carousel">
+      <Carousel>
         {this.props.isFetching && <p>Loading</p>}
         {this.props.movies.length ? (
           <div>
@@ -76,7 +84,7 @@ export class MovieCarousel extends Component {
             </Slider>
           </div>
         ) : null}
-      </div>
+      </Carousel>
     );
   }
 }

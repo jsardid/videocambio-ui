@@ -1,6 +1,6 @@
 import React from "react";
 import { Main } from "./../components/Main";
-import { Header } from "./../components/Header/index.js";
+import { Header } from "./../components/Header";
 import { connect } from "react-redux";
 import { fetchData } from "./../actions/actions";
 import { withRouter } from "react-router-dom";
