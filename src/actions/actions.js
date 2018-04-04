@@ -2,9 +2,14 @@ import {
   FETCHING_POPULAR,
   FETCHING_POPULAR_SUCCESS,
   FETCHING_NEW,
-  FETCHING_NEW_SUCCESS
+  FETCHING_NEW_SUCCESS,
+  FETCHING_MOVIE_SUCCESS
 } from "./../constants/constants";
-import { getPopularMovies, getNewMovies } from "./../services/videoCambioApi";
+import {
+  getPopularMovies,
+  getNewMovies,
+  getMovie
+} from "./../services/videoCambioApi";
 
 export function getPopular() {
   return {
@@ -32,6 +37,13 @@ export function getNewSuccess(data) {
   };
 }
 
+export function getMovieSuccess(data) {
+  return {
+    type: FETCHING_MOVIE_SUCCESS,
+    data
+  };
+}
+
 export function fetchPopular() {
   return dispatch => {
     dispatch(getPopular());
@@ -49,6 +61,16 @@ export function fetchNew() {
     getNewMovies()
       .then(data => {
         dispatch(getNewSuccess(data));
+      })
+      .catch(err => console.log("err:", err));
+  };
+}
+
+export function fetchMovie(movieId) {
+  return dispatch => {
+    getMovie(movieId)
+      .then(data => {
+        dispatch(getMovieSuccess(data));
       })
       .catch(err => console.log("err:", err));
   };

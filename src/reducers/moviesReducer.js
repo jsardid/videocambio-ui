@@ -2,7 +2,8 @@ import {
   FETCHING_POPULAR,
   FETCHING_POPULAR_SUCCESS,
   FETCHING_NEW,
-  FETCHING_NEW_SUCCESS
+  FETCHING_NEW_SUCCESS,
+  FETCHING_MOVIE_SUCCESS
 } from "../constants/constants";
 const initialState = {
   moviesCollection: {},
@@ -70,6 +71,14 @@ export default function moviesReducer(state = initialState, action) {
           isFetched: true,
           isFetching: false,
           index: action.data.map(movie => movie.tmdb_id)
+        }
+      };
+    case FETCHING_MOVIE_SUCCESS:
+      return {
+        ...state,
+        moviesCollection: {
+          ...state.moviesCollection,
+          [action.data.tmdb_id]: action.data
         }
       };
     default:
