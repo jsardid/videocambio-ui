@@ -1,29 +1,44 @@
 import React from "react";
 import { connect } from "react-redux";
 import CarouselLists from "./../components/CarouselLists";
+import { fetchPopular, fetchNew } from "./../actions/actions";
 
-const CarouselListsContainer = props => {
-  return (
-    <CarouselLists
-      lists={[
-        {
-          movies: props.movies.popularIndex.index.map(
-            movie => props.movies.moviesCollection[movie]
-          ),
-          isFetched: props.movies.popularIndex.isFetched,
-          isFetching: props.movies.popularIndex.isFetching
-        },
-        {
-          movies: props.movies.newIndex.index.map(
-            movie => props.movies.moviesCollection[movie]
-          ),
-          isFetched: props.movies.newIndex.isFetched,
-          isFetching: props.movies.newIndex.isFetching
-        }
-      ]}
-    />
-  );
-};
+class CarouselListsContainer extends React.Component {
+  render() {
+    return (
+      <CarouselLists
+        lists={[
+          {
+            movies: this.props.movies.popularIndex.index.map(
+              movie => this.props.movies.moviesCollection[movie]
+            ),
+            isFetched: this.props.movies.popularIndex.isFetched,
+            isFetching: this.props.movies.popularIndex.isFetching
+          },
+          {
+            movies: this.props.movies.newIndex.index.map(
+              movie => this.props.movies.moviesCollection[movie]
+            ),
+            isFetched: this.props.movies.newIndex.isFetched,
+            isFetching: this.props.movies.newIndex.isFetching
+          }
+        ]}
+      />
+    );
+  }
+
+  componentDidMount() {
+    this.props.fetchNew();
+    this.props.fetchPopular();
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchPopular: () => dispatch(fetchPopular()),
+    fetchNew: () => dispatch(fetchNew())
+  };
+}
 
 function mapStateToProps(state) {
   return {
@@ -31,4 +46,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(CarouselListsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  CarouselListsContainer
+);
