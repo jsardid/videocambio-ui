@@ -1,35 +1,54 @@
 import {
-  FETCHING_DATA,
-  FETCHING_DATA_SUCCESS,
-  FETCHING_DATA_FAILURE
+  FETCHING_POPULAR,
+  FETCHING_POPULAR_SUCCESS,
+  FETCHING_NEW,
+  FETCHING_NEW_SUCCESS
 } from "./../constants/constants";
-import { getAllMovies } from "./../services/videoCambioApi";
+import { getPopularMovies, getNewMovies } from "./../services/videoCambioApi";
 
-export function getData() {
+export function getPopular() {
   return {
-    type: FETCHING_DATA
+    type: FETCHING_POPULAR
   };
 }
 
-export function getDataSuccess(data) {
+export function getPopularSuccess(data) {
   return {
-    type: FETCHING_DATA_SUCCESS,
+    type: FETCHING_POPULAR_SUCCESS,
     data
   };
 }
 
-export function getDataFailure() {
+export function getNew() {
   return {
-    type: FETCHING_DATA_FAILURE
+    type: FETCHING_NEW
   };
 }
 
-export function fetchData() {
+export function getNewSuccess(data) {
+  return {
+    type: FETCHING_NEW_SUCCESS,
+    data
+  };
+}
+
+export function fetchPopular() {
   return dispatch => {
-    dispatch(getData());
-    getAllMovies()
+    dispatch(getPopular());
+    getPopularMovies()
       .then(data => {
-        dispatch(getDataSuccess(data));
+        dispatch(getPopularSuccess(data));
+      })
+      .catch(err => console.log("err:", err));
+  };
+}
+
+export function fetchNew() {
+  return dispatch => {
+    dispatch(getNew());
+    getNewMovies()
+      .then(data => {
+        dispatch(getNewSuccess(data));
       })
       .catch(err => console.log("err:", err));
   };

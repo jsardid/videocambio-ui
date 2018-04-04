@@ -5,8 +5,22 @@ import CarouselLists from "./../components/CarouselLists";
 const CarouselListsContainer = props => {
   return (
     <CarouselLists
-      isFetching={props.movies.isFetching}
-      lists={[props.movies.data.popular, props.movies.data.new]}
+      lists={[
+        {
+          movies: props.movies.popularIndex.index.map(
+            movie => props.movies.moviesCollection[movie]
+          ),
+          isFetched: props.movies.popularIndex.isFetched,
+          isFetching: props.movies.popularIndex.isFetching
+        },
+        {
+          movies: props.movies.newIndex.index.map(
+            movie => props.movies.moviesCollection[movie]
+          ),
+          isFetched: props.movies.newIndex.isFetched,
+          isFetching: props.movies.newIndex.isFetching
+        }
+      ]}
     />
   );
 };

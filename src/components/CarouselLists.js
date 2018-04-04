@@ -7,10 +7,11 @@ const CarouselLists = props => {
     <div className="carousel-lists">
       {props.lists.map((list, i) => {
         return (
-          <MovieCarousel
+          list.movies.isFetched || <MovieCarousel
             key={i}
-            isFetching={props.isFetching}
-            movies={list}
+            isFetching={list.movies.isFetching}
+            isFetched={list.movies.isFetched}
+            movies={list.movies}
           />
         );
       })}

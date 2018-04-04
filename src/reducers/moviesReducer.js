@@ -1,57 +1,76 @@
 import {
-  FETCHING_DATA,
-  FETCHING_DATA_SUCCESS,
-  FETCHING_DATA_FAILURE
+  FETCHING_POPULAR,
+  FETCHING_POPULAR_SUCCESS,
+  FETCHING_NEW,
+  FETCHING_NEW_SUCCESS
 } from "../constants/constants";
 const initialState = {
-  data: {
-    moviesCollection: {},
-    popular: [],
-    new: []
+  moviesCollection: {},
+  popularIndex: {
+    isFetched: false,
+    isFetching: false,
+    index: []
   },
-  dataFetched: false,
-  isFetching: false,
-  error: false
+  newIndex: {
+    isFetched: false,
+    isFetching: false,
+    index: []
+  }
 };
 
 export default function moviesReducer(state = initialState, action) {
   switch (action.type) {
-    case FETCHING_DATA:
+    case FETCHING_POPULAR:
       return {
         ...state,
-        data: {
-          moviesCollection: {},
-          popular: [],
-          new: []
-        },
-        isFetching: true
-      };
-    case FETCHING_DATA_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        data: {
-          moviesCollection: action.data.reduce((map, obj) => {
-            map[obj.tmdb_id] = obj;
-            return map;
-          }, {}),
-          popular: action.data.slice().sort((a, b) => {
-            return a.tmdb_popularity < b.tmdb_popularity
-              ? 1
-              : b.tmdb_popularity < a.tmdb_popularity ? -1 : 0;
-          }),
-          new: action.data.slice().sort((a, b) => {
-            return a.tmdb_release_date < b.tmdb_release_date
-              ? 1
-              : b.tmdb_release_date < a.tmdb_release_date ? -1 : 0;
-          })
+        popularIndex: {
+          isFetched: false,
+          isFetching: true,
+          index: []
         }
       };
-    case FETCHING_DATA_FAILURE:
+    case FETCHING_POPULAR_SUCCESS:
       return {
         ...state,
-        isFetching: false,
-        error: true
+        moviesCollection: Object.assign(
+          {},
+          state.moviesCollection,
+          action.data.reduce((map, obj) => {
+            map[obj.tmdb_id] = obj;
+            return map;
+          }, {})
+        ),
+        popularIndex: {
+          isFetched: true,
+          isFetching: false,
+          index: action.data.map(movie => movie.tmdb_id)
+        }
+      };
+    case FETCHING_NEW:
+      return {
+        ...state,
+        newIndex: {
+          isFetched: false,
+          isFetching: true,
+          index: []
+        }
+      };
+    case FETCHING_NEW_SUCCESS:
+      return {
+        ...state,
+        moviesCollection: Object.assign(
+          {},
+          state.moviesCollection,
+          action.data.reduce((map, obj) => {
+            map[obj.tmdb_id] = obj;
+            return map;
+          }, {})
+        ),
+        newIndex: {
+          isFetched: true,
+          isFetching: false,
+          index: action.data.map(movie => movie.tmdb_id)
+        }
       };
     default:
       return state;

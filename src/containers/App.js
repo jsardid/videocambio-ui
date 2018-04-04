@@ -2,7 +2,7 @@ import React from "react";
 import { Main } from "./../components/Main";
 import { Header } from "./../components/Header";
 import { connect } from "react-redux";
-import { fetchData } from "./../actions/actions";
+import { fetchPopular, fetchNew } from "./../actions/actions";
 import { withRouter } from "react-router-dom";
 import "./App.css";
 
@@ -17,13 +17,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchData();
+    this.props.fetchNew();
+    this.props.fetchPopular();
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchData: () => dispatch(fetchData())
+    fetchPopular: () => dispatch(fetchPopular()),
+    fetchNew: () => dispatch(fetchNew())
   };
 }
 

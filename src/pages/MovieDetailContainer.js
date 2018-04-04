@@ -4,8 +4,7 @@ import { MovieDetail } from "./../components/MovieDetail";
 
 export const MovieDetailContainer = props => (
   <MovieDetail
-    isFetching={props.movies.isFetching}
-    movie={props.movies.data.moviesCollection[props.match.params.movieId]}
+    movie={props.movies.moviesCollection[props.match.params.movieId]}
   />
 );
 
