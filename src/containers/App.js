@@ -1,9 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { Header } from "./../components/Header";
-import { Home } from "./../pages/Home";
-import MovieDetailContainer from "./../pages/MovieDetailContainer";
-import { SearchResults } from "./../pages/SearchResults";
+import HomeContainer from "./../containers/HomeContainer";
+import MovieDetailContainer from "./../containers/MovieDetailContainer";
+import { SearchResults } from "./../containers/SearchResults";
 import styled from "styled-components";
 
 const Content = styled.div`
@@ -17,7 +17,7 @@ const App = () => (
     <Header />
     <Content>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={HomeContainer} />
         <Route exact path="/movies/:movieId" component={MovieDetailContainer} />
         <Route exact path="/search" component={SearchResults} />
       </Switch>

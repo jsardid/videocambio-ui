@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import CarouselLists from "./../components/CarouselLists";
 import { fetchPopular, fetchNew } from "./../actions/actions";
 
-class CarouselListsContainer extends React.Component {
+class HomeContainer extends React.Component {
   render() {
     return (
       <CarouselLists
@@ -47,5 +47,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  CarouselListsContainer
+  HomeContainer
 );
