@@ -7,22 +7,34 @@ import { SearchResults } from "./../containers/SearchResults";
 import styled from "styled-components";
 
 const Content = styled.div`
-  margin-top: 120px !important;
-  background:  rgb(20, 22, 60);
-  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+const HeaderContainer = styled.div`
+  flex-shrink: 0;
+`;
+
+const Main = styled.div`
+  flex-grow: 1; 
+  overflow-y: auto;
+  background: rgb(20, 22, 60);
 `;
 
 const App = () => (
-  <div>
-    <Header />
-    <Content>
+  <Content>
+    <HeaderContainer>
+      <Header />
+    </HeaderContainer>
+    <Main>
       <Switch>
         <Route exact path="/" component={HomeContainer} />
         <Route exact path="/movies/:movieId" component={MovieDetailContainer} />
         <Route exact path="/search" component={SearchResults} />
       </Switch>
-    </Content>
-  </div>
+    </Main>
+  </Content>
 );
 
 export default App;
