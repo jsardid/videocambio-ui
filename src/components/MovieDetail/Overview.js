@@ -7,23 +7,14 @@ const StyledInformation = styled.div`
   font-family: Arial, Helvetica, sans-serif;
 `;
 
-const StyledTitle = styled.h1`
-  margin: 0px;
-  width: 100%;
-  padding: 10px;
-  text-shadow: 0px 0px 5px #000000;
-`;
-
 const StyledOverview = styled.p`
   width: 100%;
-  padding: 10px;
-  font-size: 0.8em;
   line-height: 20px;
 `;
 
-export const Information = props => (
+export const Overview = props => (
   <StyledInformation>
-    <StyledTitle>{props.title}</StyledTitle>
+    <h3>Sinopsis</h3>
     <StyledOverview>{props.overview}</StyledOverview>
   </StyledInformation>
 );
