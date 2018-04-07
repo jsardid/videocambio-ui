@@ -12,6 +12,7 @@ const CarouselLists = props => {
             isFetching={list.movies.isFetching}
             isFetched={list.movies.isFetched}
             movies={list.movies}
+            carouselTitle={list.carouselTitle}
           />
         );
       })}

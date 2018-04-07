@@ -7,8 +7,14 @@ import styled from "styled-components";
 const Carousel = styled.div`
   width: 100%;
   margin-top: 30px;
-  padding: 50px 0px 20px 0px;
-  background-color: rgba(0, 0, 0, 0.096);
+  padding: 10px 0px 20px 0px;
+  background-color: rgba(0, 0, 0, 0.35);
+`;
+
+const CarouselTitle = styled.h3`
+  padding-left: 20px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 `;
 
 export class MovieCarousel extends Component {
@@ -73,6 +79,7 @@ export class MovieCarousel extends Component {
         {this.props.isFetching && <p>Loading</p>}
         {this.props.movies.length ? (
           <div>
+            <CarouselTitle>{this.props.carouselTitle}</CarouselTitle>
             <Slider {...settings}>
               {this.props.movies.slice(0, 20).map((movie, i) => {
                 return (

@@ -9,6 +9,7 @@ class HomeContainer extends React.Component {
       <CarouselLists
         lists={[
           {
+            carouselTitle: "Populares",
             movies: this.props.movies.popularIndex.index.map(
               movie => this.props.movies.moviesCollection[movie]
             ),
@@ -16,6 +17,7 @@ class HomeContainer extends React.Component {
             isFetching: this.props.movies.popularIndex.isFetching
           },
           {
+            carouselTitle: "Recientes",
             movies: this.props.movies.newIndex.index.map(
               movie => this.props.movies.moviesCollection[movie]
             ),
@@ -28,8 +30,8 @@ class HomeContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchNew();
-    this.props.fetchPopular();
+    this.props.movies.newIndex.isFetched || this.props.fetchNew();
+    this.props.movies.popularIndex.isFetched || this.props.fetchPopular();
   }
 }
 
@@ -46,6 +48,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  HomeContainer
-);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
