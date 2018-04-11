@@ -11,11 +11,11 @@ const StyledMovieHeader = styled.div`
 const StyledTitle = styled.h1`
   margin: 0px;
   width: 100%;
-  line-height:0.9em;
+  line-height: 0.9em;
 `;
 
 const StyledYear = styled.span`
-  font-weight:100;
+  font-weight: 100;
   font-size: 0.6em;
 `;
 
@@ -28,7 +28,7 @@ const StyledOriginalTitle = styled.p`
 export const MovieHeader = props => (
   <StyledMovieHeader>
     <StyledTitle>
-      {props.title} <StyledYear>({props.year.substring(0, 4)})</StyledYear>
+      {props.title} <StyledYear>({props.releaseYear})</StyledYear>
     </StyledTitle>
     <StyledOriginalTitle>{props.originalTitle}</StyledOriginalTitle>
   </StyledMovieHeader>

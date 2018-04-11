@@ -57,13 +57,8 @@ export class Cast extends Component {
             return (
               <div>
                 <ImgContainer key={i}>
-                  <ActorImage
-                    src={
-                      "https://image.tmdb.org/t/p/w185/" +
-                      actor.tmdb_profile_path
-                    }
-                  />
-                  <ActorName>{actor.tmdb_name}</ActorName>
+                  <ActorImage src={actor.imgURL} />
+                  <ActorName>{actor.name}</ActorName>
                 </ImgContainer>
               </div>
             );

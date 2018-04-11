@@ -22,11 +22,7 @@ export const Videos = props => (
   <VideosSection>
     <VideosTitle>Trailer</VideosTitle>
     <StyledVideo
-      src={
-        "https://www.youtube.com/embed/" +
-        props.videoId +
-        "?rel=0&amp;showinfo=0"
-      }
+      src={props.videoURL}
       frameBorder="0"
       allow="autoplay; encrypted-media"
       allowFullScreen

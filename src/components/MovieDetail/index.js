@@ -8,7 +8,7 @@ import { Videos } from "./Videos";
 import { Cast } from "./Cast";
 
 const BackgroundImage = styled.div`
-  background-image: ${props => "url(" + props.backgroundImage + ")"};
+  background-image: ${props => "url(" + props.backdropImgURL + ")"};
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: top;
@@ -39,19 +39,14 @@ const VideoLayout = styled(Flex)`
 `;
 
 export const MovieDetail = props => {
-  if (props.isFetching || !props || !props.movie) {
-    return <h1>fetching</h1>;
-  }
-  return (
-    <BackgroundImage
-      backgroundImage={
-        "https://image.tmdb.org/t/p/w1280/" + props.movie.tmdb_backdrop_path
-      }
-    >
+  return !props || Object.keys(props).length === 0 ? (
+    <h1>fetching</h1>
+  ) : (
+    <BackgroundImage backdropImgURL={props.backdropImgURL}>
       <BackgroundGradient>
         <Content flexWrap="wrap" width={3 / 5} p="40px" mt="400px">
           <Box width={1 / 3} mt="-200px">
-            <Poster imageURL={props.movie.tmdb_poster_path} />
+            <Poster posterImgURL={props.posterImgURL} />
           </Box>
           <Box width={2 / 3} pl="30px">
             <MovieHeaderLayout
@@ -61,18 +56,18 @@ export const MovieDetail = props => {
               mb="50px"
             >
               <MovieHeader
-                title={props.movie.tmdb_title}
-                originalTitle={props.movie.tmdb_original_title}
-                year={props.movie.tmdb_release_date}
+                title={props.title}
+                originalTitle={props.originalTitle}
+                releaseYear={props.releaseYear}
               />
             </MovieHeaderLayout>
-            <Overview overview={props.movie.tmdb_overview} />
+            <Overview overview={props.overview} />
           </Box>
           <Box width={1} mt="30px">
-            <Cast cast={props.movie.tmdb_cast} />
+            <Cast cast={props.cast} />
           </Box>
           <VideoLayout mt="40px" mb="100px">
-            <Videos videoId={props.movie.tmdb_videos[0].tmdb_video_key} />
+            <Videos videoURL={props.videoURL} />
           </VideoLayout>
         </Content>
       </BackgroundGradient>

@@ -8,8 +8,4 @@ const StyledPoster = styled.img`
   background-color: grey;
 `;
 
-export const Poster = props => (
-  <StyledPoster
-    src={"https://image.tmdb.org/t/p/w500/" + props.imageURL}
-  />
-);
+export const Poster = props => <StyledPoster src={props.posterImgURL} />;
