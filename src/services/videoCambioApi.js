@@ -1,7 +1,7 @@
 import axios from "axios";
 import { VIDEOCAMBIO_API_URL } from "./../constants/config";
 
-export function getAllMovies() {
+export function requestAllMovies() {
   return axios({
     method: "get",
     url: VIDEOCAMBIO_API_URL + "/movies"
@@ -10,7 +10,7 @@ export function getAllMovies() {
   });
 }
 
-export function getPopularMovies() {
+export function requestPopularMovies() {
   return axios({
     method: "get",
     url: VIDEOCAMBIO_API_URL + "/movies?limit=20&sort_by=tmdb_popularity"
@@ -19,7 +19,7 @@ export function getPopularMovies() {
   });
 }
 
-export function getNewMovies() {
+export function requestNewMovies() {
   return axios({
     method: "get",
     url: VIDEOCAMBIO_API_URL + "/movies?limit=20&sort_by=tmdb_release_date"
@@ -45,7 +45,7 @@ export function searchMovies(limit = 20, offset = 0, query = "") {
   });
 }
 
-export function getMovie(movieID) {
+export function requestMovie(movieID) {
   return axios({
     method: "get",
     url: VIDEOCAMBIO_API_URL + "/movies/" + movieID

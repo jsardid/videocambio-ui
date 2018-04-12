@@ -5,38 +5,54 @@ import { fetchMovie } from "./../actions/actions";
 
 class MovieDetailContainer extends React.Component {
   render() {
-    let movie = this.props.movies.moviesCollection[
+    let movieStatus = !this.props.movies.moviesStatus[
       this.props.match.params.movieId
-    ];
+    ]
+      ? "notFetched"
+      : this.props.movies.moviesStatus[this.props.match.params.movieId]
+          .status;
 
-    let props = movie
-      ? {
-          title: movie.tmdb_title,
-          originalTitle: movie.tmdb_original_title,
-          releaseYear: movie.tmdb_release_date.substring(0, 4),
-          overview: movie.tmdb_overview,
-          cast: movie.tmdb_cast.map(cast => ({
-            name: cast.tmdb_name,
-            character: cast.tmdb_character,
-            imgURL: cast.tmdb_profile_path
-              ? "https://image.tmdb.org/t/p/w185/" + cast.tmdb_profile_path
-              : null
-          })),
-          videoURL:
-            movie.tmdb_videos && movie.tmdb_videos.length
-              ? "https://www.youtube.com/embed/" +
-                movie.tmdb_videos[0].tmdb_video_key +
-                "?rel=0&amp;showinfo=0"
+    let getMovieProps = () => {
+      let movie = this.props.movies.moviesCollection[
+        this.props.match.params.movieId
+      ];
+
+      return movie
+        ? {
+            title: movie.tmdb_title,
+            originalTitle: movie.tmdb_original_title,
+            releaseYear: movie.tmdb_release_date.substring(0, 4),
+            overview: movie.tmdb_overview,
+            cast: movie.tmdb_cast.map(cast => ({
+              name: cast.tmdb_name,
+              character: cast.tmdb_character,
+              imgURL: cast.tmdb_profile_path
+                ? "https://image.tmdb.org/t/p/w185/" + cast.tmdb_profile_path
+                : null
+            })),
+            videoURL:
+              movie.tmdb_videos && movie.tmdb_videos.length
+                ? "https://www.youtube.com/embed/" +
+                  movie.tmdb_videos[0].tmdb_video_key +
+                  "?rel=0&amp;showinfo=0"
+                : null,
+            posterImgURL: movie.tmdb_poster_path
+              ? "https://image.tmdb.org/t/p/w500/" + movie.tmdb_poster_path
               : null,
-          posterImgURL: movie.tmdb_poster_path
-            ? "https://image.tmdb.org/t/p/w500/" + movie.tmdb_poster_path
-            : null,
-          backdropImgURL: movie.tmdb_backdrop_path
-            ? "https://image.tmdb.org/t/p/w1280/" + movie.tmdb_backdrop_path
-            : null
-        }
-      : null;
-    return <MovieDetail {...props} />;
+            backdropImgURL: movie.tmdb_backdrop_path
+              ? "https://image.tmdb.org/t/p/w1280/" + movie.tmdb_backdrop_path
+              : null
+          }
+        : null;
+    };
+
+    return movieStatus === "fetched" ? (
+      <MovieDetail {...getMovieProps()} />
+    ) : movieStatus === "fetching" ? (
+      <p>Loading</p>
+    ) : movieStatus === "error" ? (
+      <p>Error</p>
+    ) : null;
   }
 
   componentDidMount() {

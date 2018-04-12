@@ -3,10 +3,13 @@ import {
   FETCHING_POPULAR_SUCCESS,
   FETCHING_NEW,
   FETCHING_NEW_SUCCESS,
-  FETCHING_MOVIE_SUCCESS
+  FETCHING_MOVIE,
+  FETCHING_MOVIE_SUCCESS,
+  FETCHING_MOVIE_ERROR
 } from "../constants/constants";
 const initialState = {
   moviesCollection: {},
+  moviesStatus: {},
   popularIndex: {
     isFetched: false,
     isFetching: false,
@@ -41,6 +44,14 @@ export default function moviesReducer(state = initialState, action) {
             return map;
           }, {})
         ),
+        moviesStatus: Object.assign(
+          {},
+          state.moviesStatus,
+          action.data.reduce((map, obj) => {
+            map[obj.tmdb_id] = { status: "fetched" };
+            return map;
+          }, {})
+        ),
         popularIndex: {
           isFetched: true,
           isFetching: false,
@@ -67,10 +78,26 @@ export default function moviesReducer(state = initialState, action) {
             return map;
           }, {})
         ),
+        moviesStatus: Object.assign(
+          {},
+          state.moviesStatus,
+          action.data.reduce((map, obj) => {
+            map[obj.tmdb_id] = { status: "fetched" };
+            return map;
+          }, {})
+        ),
         newIndex: {
           isFetched: true,
           isFetching: false,
           index: action.data.map(movie => movie.tmdb_id)
+        }
+      };
+    case FETCHING_MOVIE:
+      return {
+        ...state,
+        moviesStatus: {
+          ...state.moviesStatus,
+          [action.movieId]: { status: "fetching" }
         }
       };
     case FETCHING_MOVIE_SUCCESS:
@@ -79,6 +106,21 @@ export default function moviesReducer(state = initialState, action) {
         moviesCollection: {
           ...state.moviesCollection,
           [action.data.tmdb_id]: action.data
+        },
+        moviesStatus: {
+          ...state.moviesStatus,
+          [action.data.tmdb_id]: { status: "fetched" }
+        }
+      };
+    case FETCHING_MOVIE_ERROR:
+      return {
+        ...state,
+        moviesStatus: {
+          ...state.moviesStatus,
+          [action.movieId]: {
+            status: "error",
+            error: action.error
+          }
         }
       };
     default:

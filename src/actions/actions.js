@@ -3,12 +3,14 @@ import {
   FETCHING_POPULAR_SUCCESS,
   FETCHING_NEW,
   FETCHING_NEW_SUCCESS,
-  FETCHING_MOVIE_SUCCESS
+  FETCHING_MOVIE,
+  FETCHING_MOVIE_SUCCESS,
+  FETCHING_MOVIE_ERROR
 } from "./../constants/constants";
 import {
-  getPopularMovies,
-  getNewMovies,
-  getMovie
+  requestPopularMovies,
+  requestNewMovies,
+  requestMovie
 } from "./../services/videoCambioApi";
 
 export function getPopular() {
@@ -37,6 +39,13 @@ export function getNewSuccess(data) {
   };
 }
 
+export function getMovie(movieId) {
+  return {
+    type: FETCHING_MOVIE,
+    movieId: movieId
+  };
+}
+
 export function getMovieSuccess(data) {
   return {
     type: FETCHING_MOVIE_SUCCESS,
@@ -44,10 +53,18 @@ export function getMovieSuccess(data) {
   };
 }
 
+export function getMovieError(movieId, error) {
+  return {
+    type: FETCHING_MOVIE_ERROR,
+    error,
+    movieId
+  };
+}
+
 export function fetchPopular() {
   return dispatch => {
     dispatch(getPopular());
-    getPopularMovies()
+    requestPopularMovies()
       .then(data => {
         dispatch(getPopularSuccess(data));
       })
@@ -58,7 +75,7 @@ export function fetchPopular() {
 export function fetchNew() {
   return dispatch => {
     dispatch(getNew());
-    getNewMovies()
+    requestNewMovies()
       .then(data => {
         dispatch(getNewSuccess(data));
       })
@@ -68,10 +85,13 @@ export function fetchNew() {
 
 export function fetchMovie(movieId) {
   return dispatch => {
-    getMovie(movieId)
+    dispatch(getMovie(movieId));
+    requestMovie(movieId)
       .then(data => {
         dispatch(getMovieSuccess(data));
       })
-      .catch(err => console.log("err:", err));
+      .catch(err => {
+        dispatch(getMovieError(movieId, err));
+      });
   };
 }
