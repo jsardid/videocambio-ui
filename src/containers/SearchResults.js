@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { MovieCarousel } from "./../components/MovieCarousel";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
-import diacritics from "diacritics";
 import { search } from "./../actions/actions";
 
 class SearchResultsComponent extends Component {
