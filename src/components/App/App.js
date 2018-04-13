@@ -1,9 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { Header } from "./../components/Header";
-import HomeContainer from "./../containers/HomeContainer";
-import MovieDetailContainer from "./../containers/MovieDetailContainer";
-import { SearchResults } from "./../containers/SearchResults";
+import { Header } from "./../Header/Header";
+import HomeContainer from "./../../containers/HomeContainer";
+import MovieDetailContainer from "./../../containers/MovieDetailContainer";
+import { SearchResults } from "./../../containers/SearchResults";
 import styled from "styled-components";
 
 const Content = styled.div`

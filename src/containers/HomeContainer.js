@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import CarouselLists from "./../components/CarouselLists";
+import Home from "./../components/Home/Home";
 import { fetchPopular, fetchNew } from "./../actions/actions";
 
 class HomeContainer extends React.Component {
   render() {
     return (
-      <CarouselLists
+      <Home
         lists={[
           {
             carouselTitle: "Populares",

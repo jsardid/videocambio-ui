@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import "./customSlick.css";
-import { MovieResult } from "./MovieResult";
+import { MovieResult } from "./../MovieResult/MovieResult";
 import styled from "styled-components";
 
 const Carousel = styled.div`

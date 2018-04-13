@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { MovieDetail } from "./../components/MovieDetail";
+import { MovieDetail } from "./../components/MovieDetail/MovieDetail";
 import { fetchMovie } from "./../actions/actions";
 
 class MovieDetailContainer extends React.Component {
