@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import Icon from "material-ui/Icon";
 import styled from "styled-components";
 
-const WAIT_INTERVAL = 1000;
+const WAIT_INTERVAL = 750;
 const ENTER_KEY = 13;
 
 const SearchContainer = styled.div`

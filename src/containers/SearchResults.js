@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { MovieCarousel } from "./../components/MovieCarousel/MovieCarousel";
+import { MovieList } from "./../components/MovieList/MovieList";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
 import { search } from "./../actions/actions";
@@ -12,7 +12,7 @@ class SearchResultsComponent extends Component {
     ) : this.props.movies.search.resultsIndex.length === 0 ? (
       <h1 style={{ color: "white" }}>Empty results</h1>
     ) : (
-      <MovieCarousel
+      <MovieList
         movies={this.props.movies.search.resultsIndex.map(
           movie => this.props.movies.moviesCollection[movie]
         )}
