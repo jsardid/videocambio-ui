@@ -5,12 +5,15 @@ import {
   FETCHING_NEW_SUCCESS,
   FETCHING_MOVIE,
   FETCHING_MOVIE_SUCCESS,
-  FETCHING_MOVIE_ERROR
+  FETCHING_MOVIE_ERROR,
+  SEARCHING,
+  SEARCHING_SUCCESS
 } from "./../constants/constants";
 import {
   requestPopularMovies,
   requestNewMovies,
-  requestMovie
+  requestMovie,
+  requestSearch
 } from "./../services/videoCambioApi";
 
 export function getPopular() {
@@ -42,7 +45,7 @@ export function getNewSuccess(data) {
 export function getMovie(movieId) {
   return {
     type: FETCHING_MOVIE,
-    movieId: movieId
+    movieId
   };
 }
 
@@ -60,6 +63,21 @@ export function getMovieError(movieId, error) {
     movieId
   };
 }
+
+export function searchStart(query) {
+  return {
+    type: SEARCHING,
+    query
+  };
+}
+
+export function searchSuccess(data) {
+  return {
+    type: SEARCHING_SUCCESS,
+    data
+  };
+}
+
 
 export function fetchPopular() {
   return dispatch => {
@@ -93,5 +111,16 @@ export function fetchMovie(movieId) {
       .catch(err => {
         dispatch(getMovieError(movieId, err));
       });
+  };
+}
+
+export function search(query) {
+  return dispatch => {
+    dispatch(searchStart(query));
+    requestSearch(query)
+      .then(data => {
+        dispatch(searchSuccess(data));
+      })
+      .catch(err => console.log("err:", err));
   };
 }

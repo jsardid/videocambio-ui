@@ -5,7 +5,9 @@ import {
   FETCHING_NEW_SUCCESS,
   FETCHING_MOVIE,
   FETCHING_MOVIE_SUCCESS,
-  FETCHING_MOVIE_ERROR
+  FETCHING_MOVIE_ERROR,
+  SEARCHING,
+  SEARCHING_SUCCESS
 } from "../constants/constants";
 const initialState = {
   moviesCollection: {},
@@ -19,6 +21,13 @@ const initialState = {
     isFetched: false,
     isFetching: false,
     index: []
+  },
+  search: {
+    resultsIndex: [],
+    query: "",
+    totalNumberResults: 0,
+    isSearching: false,
+    isPaginating: false
   }
 };
 
@@ -123,6 +132,47 @@ export default function moviesReducer(state = initialState, action) {
           }
         }
       };
+    case SEARCHING:
+      return {
+        ...state,
+        search: {
+          query: action.query,
+          resultsIndex: [],
+          totalNumberResults: 0,
+          isSearching: true,
+          isPaginating: false
+        }
+      };
+    case SEARCHING_SUCCESS:
+      return {
+        ...state,
+        moviesCollection: Object.assign(
+          {},
+          state.moviesCollection,
+          action.data.reduce((map, obj) => {
+            map[obj.tmdb_id] = obj;
+            return map;
+          }, {})
+        ),
+        moviesStatus: Object.assign(
+          {},
+          state.moviesStatus,
+          action.data.reduce((map, obj) => {
+            map[obj.tmdb_id] = { status: "fetched" };
+            return map;
+          }, {})
+        ),
+        search: {
+          ...state.search,
+          resultsIndex: state.search.resultsIndex.concat(
+            action.data.map(movie => movie.tmdb_id)
+          ),
+          totalNumberResults: 0,
+          isSearching: false,
+          isPaginating: false
+        }
+      };
+
     default:
       return state;
   }

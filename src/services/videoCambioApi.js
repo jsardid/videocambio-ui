@@ -28,7 +28,7 @@ export function requestNewMovies() {
   });
 }
 
-export function searchMovies(limit = 20, offset = 0, query = "") {
+export function requestSearch(query = "", limit = 0, offset = 0) {
   return axios({
     method: "get",
     url:

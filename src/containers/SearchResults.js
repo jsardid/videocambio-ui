@@ -4,24 +4,34 @@ import { MovieCarousel } from "./../components/MovieCarousel";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
 import diacritics from "diacritics";
-const removeDiacritics = diacritics.remove;
+import { search } from "./../actions/actions";
 
 class SearchResultsComponent extends Component {
   render() {
-    return <MovieCarousel movies={this.getFilteredMovies()} />;
+    return this.props.movies.search.isSearching ? (
+      <h1 style={{ color: "white" }}>Searching</h1>
+    ) : this.props.movies.search.resultsIndex.length === 0 ? (
+      <h1 style={{ color: "white" }}>Empty results</h1>
+    ) : (
+      <MovieCarousel
+        movies={this.props.movies.search.resultsIndex.map(
+          movie => this.props.movies.moviesCollection[movie]
+        )}
+      />
+    );
   }
 
-  getFilteredMovies() {
-    const parsed = queryString.parse(this.props.location.search);
-    return parsed.query
-      ? Object.keys(this.props.movies.moviesCollection)
-          .map(movieID => this.props.movies.moviesCollection[movieID])
-          .filter(movie =>
-            removeDiacritics(movie.tmdb_title)
-              .toLowerCase()
-              .includes(removeDiacritics(parsed.query).toLowerCase())
-          )
-      : [];
+  componentWillReceiveProps(newProps) {
+    const oldParsedParameters = queryString.parse(this.props.location.search);
+    const newParsedParameters = queryString.parse(newProps.location.search);
+    if(oldParsedParameters.query !== newParsedParameters.query){
+      this.props.search(newParsedParameters.query);
+    }
+  }
+
+  componentDidMount() {
+    const parsedURLParameters = queryString.parse(this.props.location.search);
+    this.props.search(parsedURLParameters.query);
   }
 }
 
@@ -31,6 +41,12 @@ function mapStateToProps(state) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    search: query => dispatch(search(query))
+  };
+}
+
 export const SearchResults = withRouter(
-  connect(mapStateToProps)(SearchResultsComponent)
+  connect(mapStateToProps, mapDispatchToProps)(SearchResultsComponent)
 );
