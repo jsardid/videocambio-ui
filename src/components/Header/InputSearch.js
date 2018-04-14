@@ -56,7 +56,7 @@ class InputSearch extends Component {
   render() {
     return (
       <SearchContainer>
-        <SearchInput type="text" onChange={this.handleChange} />
+        <SearchInput type="text" onKeyUp={this.handleChange}  />
         <SearchIcon>search</SearchIcon>
       </SearchContainer>
     );
