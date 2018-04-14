@@ -6,6 +6,7 @@ import { Overview } from "./Overview";
 import { MovieHeader } from "./MovieHeader";
 import { Videos } from "./Videos";
 import { Cast } from "./Cast";
+import { Loading } from "./Loading";
 
 const BackgroundImage = styled.div`
   background-image: ${props => "url(" + props.backdropImgURL + ")"};
@@ -39,14 +40,12 @@ const VideoLayout = styled(Flex)`
 `;
 
 export const MovieDetail = props => {
-  return !props || Object.keys(props).length === 0 ? (
-    <h1>fetching</h1>
-  ) : (
-    <BackgroundImage backdropImgURL={props.backdropImgURL}>
+  return props.status === "fetched" ? (
+    <BackgroundImage backdropImgURL={props.movie.backdropImgURL}>
       <BackgroundGradient>
         <Content flexWrap="wrap" width={3 / 5} p="40px" mt="400px">
           <Box width={1 / 3} mt="-200px">
-            <Poster posterImgURL={props.posterImgURL} />
+            <Poster posterImgURL={props.movie.posterImgURL} />
           </Box>
           <Box width={2 / 3} pl="30px">
             <MovieHeaderLayout
@@ -56,21 +55,25 @@ export const MovieDetail = props => {
               mb="50px"
             >
               <MovieHeader
-                title={props.title}
-                originalTitle={props.originalTitle}
-                releaseYear={props.releaseYear}
+                title={props.movie.title}
+                originalTitle={props.movie.originalTitle}
+                releaseYear={props.movie.releaseYear}
               />
             </MovieHeaderLayout>
-            <Overview overview={props.overview} />
+            <Overview overview={props.movie.overview} />
           </Box>
           <Box width={1} mt="30px">
-            <Cast cast={props.cast} />
+            <Cast cast={props.movie.cast} />
           </Box>
           <VideoLayout mt="40px" mb="100px">
-            <Videos videoURL={props.videoURL} />
+            <Videos videoURL={props.movie.videoURL} />
           </VideoLayout>
         </Content>
       </BackgroundGradient>
     </BackgroundImage>
-  );
+  ) : props.status === "fetching" ? (
+    <Loading />
+  ) : props.status === "error" ? (
+    <div> Error </div>
+  ) : null;
 };
