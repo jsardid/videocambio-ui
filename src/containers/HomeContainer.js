@@ -28,8 +28,9 @@ class HomeContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.movies.newIndex.isFetched || this.props.fetchNew();
-    this.props.movies.popularIndex.isFetched || this.props.fetchPopular();
+    this.props.movies.newIndex.status === "fetched" || this.props.fetchNew();
+    this.props.movies.popularIndex.status === "fetched" ||
+      this.props.fetchPopular();
   }
 }
 
