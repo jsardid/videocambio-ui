@@ -2,19 +2,40 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import "./customSlick.css";
 import { MovieResult } from "./../MovieResult/MovieResult";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import Spinner from "react-spinkit";
 
 const Carousel = styled.div`
   width: 100%;
   margin-top: 30px;
   padding: 10px 0px 20px 0px;
-  background-color: rgba(0, 0, 0, 0.35);
 `;
 
 const CarouselTitle = styled.h3`
   padding-left: 20px;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 0px 0px 10px #000000;
+  font-weight: 100;
+  margin-bottom: 10px;
+`;
+
+const SliderContainer = styled.div`
+  background-color: #00000057;
+  box-shadow: 0px 0px 10px #000000;
+`;
+const changeColor = keyframes`
+    0%   {background-color: #00000045;}
+    50%  {background-color: #00000099;}
+    100% {background-color: #00000045;}
+`;
+
+const SpinnerContainer = styled.div`
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ${changeColor} 2s linear infinite;
 `;
 
 export class MovieCarousel extends Component {
@@ -76,21 +97,26 @@ export class MovieCarousel extends Component {
     };
     return (
       <Carousel>
-        {this.props.isFetching && <p>Loading</p>}
-        {this.props.movies.length ? (
-          <div>
-            <CarouselTitle>{this.props.carouselTitle}</CarouselTitle>
-            <Slider {...settings}>
-              {this.props.movies.slice(0, 20).map((movie, i) => {
-                return (
-                  <div key={i}>
-                    <MovieResult movie={movie} />
-                  </div>
-                );
-              })}
-            </Slider>
-          </div>
-        ) : null}
+        <CarouselTitle>{this.props.carouselTitle}</CarouselTitle>
+        <SliderContainer>
+          {this.props.status === "fetching" ? (
+            <SpinnerContainer>
+              <Spinner name="ball-beat" color="#ffffff5c" fadeIn="quarter" />
+            </SpinnerContainer>
+          ) : (
+            <div>
+              <Slider {...settings}>
+                {this.props.movies.map((movie, i) => {
+                  return (
+                    <div key={i}>
+                      <MovieResult movie={movie} />
+                    </div>
+                  );
+                })}
+              </Slider>
+            </div>
+          )}
+        </SliderContainer>
       </Carousel>
     );
   }

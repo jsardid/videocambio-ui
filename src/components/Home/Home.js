@@ -11,15 +11,12 @@ const Home = props => {
     <HomeContainer>
       {props.lists.map((list, i) => {
         return (
-          list.movies.isFetched || (
-            <MovieCarousel
-              key={i}
-              isFetching={list.movies.isFetching}
-              isFetched={list.movies.isFetched}
-              movies={list.movies}
-              carouselTitle={list.carouselTitle}
-            />
-          )
+          <MovieCarousel
+            key={i}
+            status={list.status}
+            movies={list.movies}
+            carouselTitle={list.carouselTitle}
+          />
         );
       })}
     </HomeContainer>

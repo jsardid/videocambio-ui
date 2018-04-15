@@ -4,11 +4,15 @@ import { MovieList } from "./../components/MovieList/MovieList";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
 import { search } from "./../actions/actions";
+var Spinner = require("react-spinkit");
 
 class SearchResultsComponent extends Component {
   render() {
     return this.props.movies.search.isSearching ? (
-      <h1 style={{ color: "white" }}>Searching</h1>
+      <div>
+        <Spinner name="line-scale" color="white" fadeIn="quarter"/>
+        <h1 style={{ color: "white" }}>Searching</h1>
+      </div>
     ) : this.props.movies.search.resultsIndex.length === 0 ? (
       <h1 style={{ color: "white" }}>Empty results</h1>
     ) : (
@@ -23,7 +27,7 @@ class SearchResultsComponent extends Component {
   componentWillReceiveProps(newProps) {
     const oldParsedParameters = queryString.parse(this.props.location.search);
     const newParsedParameters = queryString.parse(newProps.location.search);
-    if(oldParsedParameters.query !== newParsedParameters.query){
+    if (oldParsedParameters.query !== newParsedParameters.query) {
       this.props.search(newParsedParameters.query);
     }
   }

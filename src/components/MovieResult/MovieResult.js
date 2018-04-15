@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const MovieLinkContainer = styled.div`
     text-align: center;
+    height: 300px;
 `;
 
 const Poster = styled.img`

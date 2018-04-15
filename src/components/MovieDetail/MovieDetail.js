@@ -6,7 +6,7 @@ import { Overview } from "./Overview";
 import { MovieHeader } from "./MovieHeader";
 import { Videos } from "./Videos";
 import { Cast } from "./Cast";
-import { Loading } from "./Loading";
+import Spinner from "react-spinkit";
 
 const BackgroundImage = styled.div`
   background-image: ${props => "url(" + props.backdropImgURL + ")"};
@@ -72,7 +72,9 @@ export const MovieDetail = props => {
       </BackgroundGradient>
     </BackgroundImage>
   ) : props.status === "fetching" ? (
-    <Loading />
+    <Flex width={1} justifyContent="center" mt="150px">
+      <Spinner name="line-scale" color="#ffffff5c" fadeIn="quarter" />
+    </Flex>
   ) : props.status === "error" ? (
     <div> Error </div>
   ) : null;

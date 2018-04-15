@@ -13,13 +13,11 @@ const initialState = {
   moviesCollection: {},
   moviesStatus: {},
   popularIndex: {
-    isFetched: false,
-    isFetching: false,
+    status: 'not_fetched',
     index: []
   },
   newIndex: {
-    isFetched: false,
-    isFetching: false,
+    status: 'not_fetched',
     index: []
   },
   search: {
@@ -37,8 +35,7 @@ export default function moviesReducer(state = initialState, action) {
       return {
         ...state,
         popularIndex: {
-          isFetched: false,
-          isFetching: true,
+          status: 'fetching',
           index: []
         }
       };
@@ -62,8 +59,7 @@ export default function moviesReducer(state = initialState, action) {
           }, {})
         ),
         popularIndex: {
-          isFetched: true,
-          isFetching: false,
+          status: 'fetched',
           index: action.data.map(movie => movie.tmdb_id)
         }
       };
@@ -71,8 +67,7 @@ export default function moviesReducer(state = initialState, action) {
       return {
         ...state,
         newIndex: {
-          isFetched: false,
-          isFetching: true,
+          status: 'fetching',
           index: []
         }
       };
@@ -96,8 +91,7 @@ export default function moviesReducer(state = initialState, action) {
           }, {})
         ),
         newIndex: {
-          isFetched: true,
-          isFetching: false,
+          status: 'fetched',
           index: action.data.map(movie => movie.tmdb_id)
         }
       };

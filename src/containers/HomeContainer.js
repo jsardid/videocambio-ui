@@ -13,16 +13,14 @@ class HomeContainer extends React.Component {
             movies: this.props.movies.popularIndex.index.map(
               movie => this.props.movies.moviesCollection[movie]
             ),
-            isFetched: this.props.movies.popularIndex.isFetched,
-            isFetching: this.props.movies.popularIndex.isFetching
+            status: this.props.movies.popularIndex.status
           },
           {
             carouselTitle: "Recientes",
             movies: this.props.movies.newIndex.index.map(
               movie => this.props.movies.moviesCollection[movie]
             ),
-            isFetched: this.props.movies.newIndex.isFetched,
-            isFetching: this.props.movies.newIndex.isFetching
+            status: this.props.movies.newIndex.status
           }
         ]}
       />
