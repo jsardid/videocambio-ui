@@ -7,19 +7,20 @@ const WAIT_INTERVAL = 750;
 const ENTER_KEY = 13;
 
 const SearchContainer = styled.div`
-  margin-top: 8px;
   display: flex;
   align-items: center;
+  width: 100%;
 `;
 
 const SearchInput = styled.input`
-  width: 500px;
+  width: 100%;
   height: 32px;
-  padding-left: 10px;
   font-family: Arial, Helvetica, sans-serif;
+  padding: 0px 10px;
 `;
 
 const SearchIcon = styled(Icon)`
+  width: 30px;
   position: relative;
   left: -30px;
 `;
@@ -56,7 +57,7 @@ class InputSearch extends Component {
   render() {
     return (
       <SearchContainer>
-        <SearchInput type="text" onKeyUp={this.handleChange}  />
+        <SearchInput type="text" placeholder="Buscar películas por título" onKeyUp={this.handleChange} />
         <SearchIcon>search</SearchIcon>
       </SearchContainer>
     );

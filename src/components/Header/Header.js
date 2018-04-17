@@ -2,26 +2,45 @@ import React from "react";
 import InputSearch from "./InputSearch";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Flex, Box } from "grid-styled";
 
-const StyledHeader = styled.header`
+const StyledHeader = styled(Flex)`
   background-color: #e7e7eb;
-  width: 100%;
-  height: 120px;
   box-shadow: 0px 0px 10px #000000;
   display: flex;
   align-items: center;
 `;
 
 const StyledLogo = styled.img`
-  height: 120px;
-  margin-left: 100px;
+  max-width: 100%;
+  height: auto;
+`;
+
+const LogoLayout = styled.div`
+  width: 100px;
+  margin: 0px 20px;
+  @media only screen and (max-width: 500px) {
+    margin: 0px 10px 0px 0px;
+    width: 80px;
+  }
+`;
+const SearchLayout = styled.div`
+  width: 100px;
+  flex-grow: 1;
+  max-width: 500px;
 `;
 
 export const Header = () => (
-  <StyledHeader position="static">
-    <Link to="">
-      <StyledLogo src="/logo.png" alt="Video Cambio 100 Logo" />
-    </Link>
-    <InputSearch />
-  </StyledHeader>
+  <div>
+    <StyledHeader>
+      <LogoLayout>
+        <Link to="">
+          <StyledLogo src="/logo.png" alt="Video Cambio 100 Logo" />
+        </Link>
+      </LogoLayout>
+      <SearchLayout>
+        <InputSearch />
+      </SearchLayout>
+    </StyledHeader>
+  </div>
 );

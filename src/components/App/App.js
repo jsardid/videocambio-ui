@@ -12,21 +12,13 @@ const Content = styled.div`
   flex-direction: column;
 `;
 
-const HeaderContainer = styled.div`
-  flex-shrink: 0;
-`;
-
 const Main = styled.div`
-  flex-grow: 1; 
-  overflow-y: auto;
   background: rgb(20, 22, 60);
 `;
 
 const App = () => (
   <Content>
-    <HeaderContainer>
-      <Header />
-    </HeaderContainer>
+    <Header />
     <Main>
       <Switch>
         <Route exact path="/" component={HomeContainer} />
