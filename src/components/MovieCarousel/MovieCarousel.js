@@ -45,7 +45,7 @@ export class MovieCarousel extends Component {
       infinite: false,
       speed: 500,
       slidesToShow: 8,
-      slidesToScroll: 1,
+      slidesToScroll: 8,
       adaptiveHeight: true,
       swipeToSlide: true,
       lazyLoad: false,
