@@ -8,12 +8,52 @@ import { Videos } from "./Videos";
 import { Cast } from "./Cast";
 import Spinner from "react-spinkit";
 
+
+export const MovieDetail = props => {
+  return props.status === "fetched" ? (
+    <BackgroundImage backdropImgURL={props.movie.backdropImgURL}>
+      <BackgroundGradient>
+        <Content>
+          <PosterLayout>
+            <Poster posterImgURL={props.movie.posterImgURL} />
+          </PosterLayout>
+          <MovieInfo>
+            <MovieHeader
+              title={props.movie.title}
+              originalTitle={props.movie.originalTitle}
+              releaseYear={props.movie.releaseYear}
+            />
+            <Overview overview={props.movie.overview} />
+          </MovieInfo>
+          <Cast cast={props.movie.cast} />
+          <Videos videoURL={props.movie.videoURL} />
+        </Content>
+      </BackgroundGradient>
+    </BackgroundImage>
+  ) : props.status === "fetching" ? (
+    <Flex width={1} justifyContent="center" mt="150px">
+      <Spinner name="line-scale" color="#ffffff5c" fadeIn="quarter" />
+    </Flex>
+  ) : props.status === "error" ? (
+    <div> Error </div>
+  ) : null;
+};
+
 const BackgroundImage = styled.div`
   background-image: ${props => "url(" + props.backdropImgURL + ")"};
-  background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: top;
   background-color: #484a76;
+  background-size: 300% auto;
+  @media only screen and (min-width: 600px) {
+    background-size: 200% auto;
+  }
+  @media only screen and (min-width: 900px) {
+    background-size: 150% auto;
+  }
+  @media only screen and (min-width: 1200px) {
+    background-size: 100% auto;
+  }
 `;
 
 const BackgroundGradient = styled.div`
@@ -26,56 +66,30 @@ const BackgroundGradient = styled.div`
   justify-content: center;
 `;
 
-const Content = styled(Flex)`
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  margin-top: 400px;
   background: rgba(0, 0, 0, 0.5);
+  width: 80%;
+
+  @media only screen and (min-width: 600px) {
+    width: 75%;
+    max-width: 1000px;
+  }
 `;
 
-const MovieHeaderLayout = styled(Flex)`
-  height: 300px;
+const PosterLayout = styled.div`
+  width: 75%;
+  max-width: 300px;
+  margin-top: -300px;
 `;
+
+const MovieInfo = styled.div``;
 
 const VideoLayout = styled(Flex)`
   height: 500px;
   width: 800px;
 `;
-
-export const MovieDetail = props => {
-  return props.status === "fetched" ? (
-    <BackgroundImage backdropImgURL={props.movie.backdropImgURL}>
-      <BackgroundGradient>
-        <Content flexWrap="wrap" width={3 / 5} p="40px" mt="400px">
-          <Box width={1 / 3} mt="-200px">
-            <Poster posterImgURL={props.movie.posterImgURL} />
-          </Box>
-          <Box width={2 / 3} pl="30px">
-            <MovieHeaderLayout
-              flexDirection="column"
-              justifyContent="flex-end"
-              mt="-350px"
-              mb="50px"
-            >
-              <MovieHeader
-                title={props.movie.title}
-                originalTitle={props.movie.originalTitle}
-                releaseYear={props.movie.releaseYear}
-              />
-            </MovieHeaderLayout>
-            <Overview overview={props.movie.overview} />
-          </Box>
-          <Box width={1} mt="30px">
-            <Cast cast={props.movie.cast} />
-          </Box>
-          <VideoLayout mt="40px" mb="100px">
-            <Videos videoURL={props.movie.videoURL} />
-          </VideoLayout>
-        </Content>
-      </BackgroundGradient>
-    </BackgroundImage>
-  ) : props.status === "fetching" ? (
-    <Flex width={1} justifyContent="center" mt="150px">
-      <Spinner name="line-scale" color="#ffffff5c" fadeIn="quarter" />
-    </Flex>
-  ) : props.status === "error" ? (
-    <div> Error </div>
-  ) : null;
-};
