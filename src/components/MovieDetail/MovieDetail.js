@@ -14,15 +14,25 @@ export const MovieDetail = props => {
       <BackgroundGradient>
         <Content>
           <FirstRow>
-            <PosterLayout>
-              <Poster posterImgURL={props.movie.posterImgURL} />
-            </PosterLayout>
-            <MovieInfo>
+            <MovieHeaderTopLayout>
               <MovieHeader
                 title={props.movie.title}
                 originalTitle={props.movie.originalTitle}
                 releaseYear={props.movie.releaseYear}
               />
+            </MovieHeaderTopLayout>
+
+            <PosterLayout>
+              <Poster posterImgURL={props.movie.posterImgURL} />
+            </PosterLayout>
+            <MovieInfo>
+              <MovieHeaderLayout>
+                <MovieHeader
+                  title={props.movie.title}
+                  originalTitle={props.movie.originalTitle}
+                  releaseYear={props.movie.releaseYear}
+                />
+              </MovieHeaderLayout>
               <Overview overview={props.movie.overview} />
             </MovieInfo>
           </FirstRow>
@@ -68,20 +78,13 @@ const BackgroundGradient = styled.div`
 `;
 
 const Content = styled.div`
-  display: flex;
-  flex-direction: column;
   align-items: center;
   padding: 40px;
   margin-top: 400px;
   background: rgba(0, 0, 0, 0.5);
-  margin-left: 15px;
-  margin-right: 15px;
-  width: auto;
-
-  @media only screen and (min-width: 600px) {
-    width: 75%;
-    max-width: 1000px;
-  }
+  width: 75%;
+  min-width: 300px;
+  max-width: 1000px;
 `;
 
 const FirstRow = styled.div`
@@ -89,30 +92,50 @@ const FirstRow = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+
   @media only screen and (min-width: 600px) {
     flex-direction: row;
+    align-items: flex-start;
   }
 `;
 
 const PosterLayout = styled.div`
-  margin-top: -300px;
-  margin-right: 20px;
-  margin-left: 20px;
-  width: auto;
-  max-width: 300px;
-
+  width: 300px;
   @media only screen and (min-width: 600px) {
-    width: 300px;
+    margin-top: -200px;
   }
 `;
 
 const MovieInfo = styled.div`
+  width: 100%;
+  margin-top: 30px;
   @media only screen and (min-width: 600px) {
+    margin-top: initial;
+    margin-left: 30px;
+    width: 300px;
     flex-grow: 1;
   }
 `;
 
-const VideoLayout = styled(Flex)`
-  height: 500px;
-  width: 800px;
+const MovieHeaderTopLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: -400px;
+  margin-bottom: 30px;
+  @media only screen and (min-width: 600px) {
+    display: none;
+  }
+`;
+
+const MovieHeaderLayout = styled.div`
+  display: none;
+  @media only screen and (min-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 300px;
+    margin-top: -350px;
+    margin-bottom: 50px;
+  }
 `;

@@ -3,13 +3,12 @@ import styled from "styled-components";
 
 const VideosSection = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
 `;
 
 const StyledVideo = styled.iframe`
-  flex-grow: 1;
+  height: 500px;
   width: 100%;
 `;
 
