@@ -8,23 +8,24 @@ import { Videos } from "./Videos";
 import { Cast } from "./Cast";
 import Spinner from "react-spinkit";
 
-
 export const MovieDetail = props => {
   return props.status === "fetched" ? (
     <BackgroundImage backdropImgURL={props.movie.backdropImgURL}>
       <BackgroundGradient>
         <Content>
-          <PosterLayout>
-            <Poster posterImgURL={props.movie.posterImgURL} />
-          </PosterLayout>
-          <MovieInfo>
-            <MovieHeader
-              title={props.movie.title}
-              originalTitle={props.movie.originalTitle}
-              releaseYear={props.movie.releaseYear}
-            />
-            <Overview overview={props.movie.overview} />
-          </MovieInfo>
+          <FirstRow>
+            <PosterLayout>
+              <Poster posterImgURL={props.movie.posterImgURL} />
+            </PosterLayout>
+            <MovieInfo>
+              <MovieHeader
+                title={props.movie.title}
+                originalTitle={props.movie.originalTitle}
+                releaseYear={props.movie.releaseYear}
+              />
+              <Overview overview={props.movie.overview} />
+            </MovieInfo>
+          </FirstRow>
           <Cast cast={props.movie.cast} />
           <Videos videoURL={props.movie.videoURL} />
         </Content>
@@ -73,7 +74,9 @@ const Content = styled.div`
   padding: 40px;
   margin-top: 400px;
   background: rgba(0, 0, 0, 0.5);
-  width: 80%;
+  margin-left: 15px;
+  margin-right: 15px;
+  width: auto;
 
   @media only screen and (min-width: 600px) {
     width: 75%;
@@ -81,13 +84,33 @@ const Content = styled.div`
   }
 `;
 
-const PosterLayout = styled.div`
-  width: 75%;
-  max-width: 300px;
-  margin-top: -300px;
+const FirstRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  @media only screen and (min-width: 600px) {
+    flex-direction: row;
+  }
 `;
 
-const MovieInfo = styled.div``;
+const PosterLayout = styled.div`
+  margin-top: -300px;
+  margin-right: 20px;
+  margin-left: 20px;
+  width: auto;
+  max-width: 300px;
+
+  @media only screen and (min-width: 600px) {
+    width: 300px;
+  }
+`;
+
+const MovieInfo = styled.div`
+  @media only screen and (min-width: 600px) {
+    flex-grow: 1;
+  }
+`;
 
 const VideoLayout = styled(Flex)`
   height: 500px;
