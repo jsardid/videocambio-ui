@@ -20,20 +20,32 @@ const ImgContainer = styled.div`
 `;
 
 const ActorImage = styled.img`
-  height: 200px;
-  width: 140px;
-  background-color: #333;
+  background-color: #ffffff8c;
+  height: 150px;
+  width: 100px;
+  @media only screen and (min-width: 600px) {
+    height: 200px;
+    width: 130px;
+  }
 `;
 
-const ActorName = styled.p`
+const ActorName = styled.div`
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #e7e7eb;
+  font-size: 14px;
+  background-color: #ffffff14;
   margin: 0px;
   padding: 10px;
-  width: 120px;
+  width: 80px;
+  height: 32px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  font-weight: bold;
-  color: #14163c;
+  @media only screen and (min-width: 600px) {
+    width: 110px;
+  }
+
 `;
 
 export class Cast extends Component {
@@ -45,9 +57,38 @@ export class Cast extends Component {
       slidesToShow: 6,
       slidesToScroll: 6,
       adaptiveHeight: true,
-      swipeToSlide: true,
       lazyLoad: false,
-      arrows: true
+      arrows: true,
+      responsive: [
+        {
+          breakpoint: 1150,
+          settings: {
+            slidesToShow: 5,
+            slidesToScroll: 5
+          }
+        },
+        {
+          breakpoint: 1000,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4
+          }
+        },
+        {
+          breakpoint: 800,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3
+          }
+        },
+        {
+          breakpoint: 450,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        }
+      ]
     };
     return (
       <Carousel>
@@ -58,7 +99,9 @@ export class Cast extends Component {
               <div>
                 <ImgContainer key={i}>
                   <ActorImage src={actor.imgURL} />
-                  <ActorName>{actor.name}</ActorName>
+                  <ActorName>
+                    <span>{actor.name}</span>
+                  </ActorName>
                 </ImgContainer>
               </div>
             );

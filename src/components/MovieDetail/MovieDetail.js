@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Flex, Box } from "grid-styled";
+import { Flex } from "grid-styled";
 import { Poster } from "./Poster";
 import { Overview } from "./Overview";
 import { MovieHeader } from "./MovieHeader";
@@ -83,7 +83,6 @@ const Content = styled.div`
   margin-top: 400px;
   background: rgba(0, 0, 0, 0.5);
   width: 75%;
-  min-width: 300px;
   max-width: 1000px;
 `;
 
@@ -100,9 +99,10 @@ const FirstRow = styled.div`
 `;
 
 const PosterLayout = styled.div`
-  width: 300px;
+  width: 250px;
   @media only screen and (min-width: 600px) {
     margin-top: -200px;
+    width: 300px;
   }
 `;
 

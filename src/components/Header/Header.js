@@ -2,7 +2,7 @@ import React from "react";
 import InputSearch from "./InputSearch";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Flex, Box } from "grid-styled";
+import { Flex } from "grid-styled";
 
 const StyledHeader = styled(Flex)`
   background-color: #e7e7eb;

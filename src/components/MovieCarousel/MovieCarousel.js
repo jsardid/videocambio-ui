@@ -7,7 +7,7 @@ import Spinner from "react-spinkit";
 
 const Carousel = styled.div`
   width: 100%;
-  margin-top: 30px;
+  margin-top: 0px;
   padding: 10px 0px 20px 0px;
 `;
 
@@ -31,11 +31,15 @@ const changeColor = keyframes`
 `;
 
 const SpinnerContainer = styled.div`
-  height: 300px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
   animation: ${changeColor} 2s linear infinite;
+  @media only screen and (min-width: 600px) {
+    height: 300px;
+  }
+
 `;
 
 export class MovieCarousel extends Component {
@@ -94,10 +98,17 @@ export class MovieCarousel extends Component {
           }
         },
         {
-          breakpoint: 450,
+          breakpoint: 600,
           settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToShow: 4,
+            slidesToScroll: 4
+          }
+        },
+        {
+          breakpoint: 400,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3
           }
         }
       ]
