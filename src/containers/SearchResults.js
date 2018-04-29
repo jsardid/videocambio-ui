@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { MovieList } from "./../components/MovieList/MovieList";
 import { withRouter } from "react-router-dom";
-import queryString from "query-string";
+import qs from "qs";
 import { search } from "./../actions/actions";
 var Spinner = require("react-spinkit");
 
@@ -10,7 +10,7 @@ class SearchResultsComponent extends Component {
   render() {
     return this.props.movies.search.isSearching ? (
       <div>
-        <Spinner name="line-scale" color="white" fadeIn="quarter"/>
+        <Spinner name="line-scale" color="white" fadeIn="quarter" />
         <h1 style={{ color: "white" }}>Searching</h1>
       </div>
     ) : this.props.movies.search.resultsIndex.length === 0 ? (
@@ -25,15 +25,21 @@ class SearchResultsComponent extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    const oldParsedParameters = queryString.parse(this.props.location.search);
-    const newParsedParameters = queryString.parse(newProps.location.search);
+    const oldParsedParameters = qs.parse(this.props.location.search, {
+      ignoreQueryPrefix: true
+    });
+    const newParsedParameters = qs.parse(newProps.location.search, {
+      ignoreQueryPrefix: true
+    });
     if (oldParsedParameters.query !== newParsedParameters.query) {
       this.props.search(newParsedParameters.query);
     }
   }
 
   componentDidMount() {
-    const parsedURLParameters = queryString.parse(this.props.location.search);
+    const parsedURLParameters = qs.parse(this.props.location.search, {
+      ignoreQueryPrefix: true
+    });
     this.props.search(parsedURLParameters.query);
   }
 }
