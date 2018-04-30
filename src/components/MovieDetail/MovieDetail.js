@@ -99,10 +99,13 @@ const FirstRow = styled.div`
 `;
 
 const PosterLayout = styled.div`
+  flex-shrink: 0;
   width: 250px;
+  height: 370px;
   @media only screen and (min-width: 600px) {
     margin-top: -200px;
     width: 300px;
+    height: 450px;
   }
 `;
 

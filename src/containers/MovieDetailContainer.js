@@ -42,7 +42,7 @@ class MovieDetailContainer extends React.Component {
                     "?rel=0&amp;showinfo=0"
                   : null,
               posterImgURL: movie.tmdb_poster_path
-                ? "https://image.tmdb.org/t/p/w500/" + movie.tmdb_poster_path
+                ? "https://image.tmdb.org/t/p/w300/" + movie.tmdb_poster_path
                 : null,
               backdropImgURL: movie.tmdb_backdrop_path
                 ? "https://image.tmdb.org/t/p/w1280/" + movie.tmdb_backdrop_path
