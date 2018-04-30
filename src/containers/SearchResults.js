@@ -4,14 +4,16 @@ import { MovieList } from "./../components/MovieList/MovieList";
 import { withRouter } from "react-router-dom";
 import qs from "qs";
 import { search } from "./../actions/actions";
-var Spinner = require("react-spinkit");
+import { Flex } from "grid-styled";
+import Spinner from "react-spinkit";
 
 class SearchResultsComponent extends Component {
   render() {
     return this.props.movies.search.isSearching ? (
       <div>
-        <Spinner name="line-scale" color="white" fadeIn="quarter" />
-        <h1 style={{ color: "white" }}>Searching</h1>
+        <Flex width={1} justifyContent="center" mt="150px">
+          <Spinner name="line-scale" color="#ffffff5c" fadeIn="quarter" />
+        </Flex>
       </div>
     ) : this.props.movies.search.resultsIndex.length === 0 ? (
       <h1 style={{ color: "white" }}>Empty results</h1>

@@ -92,7 +92,7 @@ const FirstRow = styled.div`
   align-items: center;
   width: 100%;
 
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 900px) {
     flex-direction: row;
     align-items: flex-start;
   }
@@ -102,7 +102,7 @@ const PosterLayout = styled.div`
   flex-shrink: 0;
   width: 250px;
   height: 370px;
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 900px) {
     margin-top: -200px;
     width: 300px;
     height: 450px;
@@ -112,7 +112,7 @@ const PosterLayout = styled.div`
 const MovieInfo = styled.div`
   width: 100%;
   margin-top: 30px;
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 900px) {
     margin-top: initial;
     margin-left: 30px;
     width: 300px;
@@ -126,14 +126,14 @@ const MovieHeaderTopLayout = styled.div`
   justify-content: flex-end;
   margin-top: -400px;
   margin-bottom: 30px;
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 900px) {
     display: none;
   }
 `;
 
 const MovieHeaderLayout = styled.div`
   display: none;
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 900px) {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
