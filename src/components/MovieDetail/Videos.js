@@ -3,11 +3,9 @@ import styled from "styled-components";
 
 const VideosSection = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
 `;
 
-// CSS hack to simulate auto height on youtube iframe 
+// CSS hack to simulate auto height on youtube iframe
 const VideoWrapper = styled.div`
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
@@ -16,11 +14,11 @@ const VideoWrapper = styled.div`
 `;
 
 const StyledVideo = styled.iframe`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 const VideosTitle = styled.h3`
@@ -33,6 +31,8 @@ export const Videos = props => (
     <VideosTitle>Trailer</VideosTitle>
     <VideoWrapper>
       <StyledVideo
+        width="560"
+        height="349"
         src={props.videoURL}
         frameBorder="0"
         allow="autoplay; encrypted-media"
