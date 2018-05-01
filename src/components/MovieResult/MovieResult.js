@@ -56,7 +56,6 @@ export const MovieResult = props => {
                 }
                 alt="poster"
                 loader={<Loading />}
-                onLoad={() => window.dispatchEvent(new Event("resize"))} // Fix for react slick
               />
             </StyledLink>
           ) : (
