@@ -7,9 +7,20 @@ const VideosSection = styled.div`
   flex-direction: column;
 `;
 
+// CSS hack to simulate auto height on youtube iframe 
+const VideoWrapper = styled.div`
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+`;
+
 const StyledVideo = styled.iframe`
-  height: 500px;
-  width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 `;
 
 const VideosTitle = styled.h3`
@@ -20,11 +31,13 @@ const VideosTitle = styled.h3`
 export const Videos = props => (
   <VideosSection>
     <VideosTitle>Trailer</VideosTitle>
-    <StyledVideo
-      src={props.videoURL}
-      frameBorder="0"
-      allow="autoplay; encrypted-media"
-      allowFullScreen
-    />
+    <VideoWrapper>
+      <StyledVideo
+        src={props.videoURL}
+        frameBorder="0"
+        allow="autoplay; encrypted-media"
+        allowFullScreen
+      />
+    </VideoWrapper>
   </VideosSection>
 );
