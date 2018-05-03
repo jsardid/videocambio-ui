@@ -15,12 +15,12 @@ const Carousel = styled.div`
 const ImgContainer = styled.div`
   display: flex;
   align-items: center;
-  background-color: #0000004a;
+  background-color: rgba(0, 0, 0, 0.35);
   flex-direction: column;
 `;
 
 const ActorImage = styled.img`
-  background-color: #ffffff8c;
+  background-color: rgba(255, 255, 255, 0.4);
   height: 150px;
   width: 100px;
   @media only screen and (min-width: 600px) {
@@ -32,7 +32,7 @@ const ActorImage = styled.img`
 const ActorName = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  background-color: #ffffff14;
+  background-color: rgba(255, 255, 255, 0.1);
   margin: 0px;
   padding: 10px;
   width: 80px;

@@ -70,8 +70,8 @@ const BackgroundImage = styled.div`
 const BackgroundGradient = styled.div`
   width: 100%;
   background: linear-gradient(
-    rgb(20, 22, 60, 0.3) 50px,
-    rgb(20, 22, 60, 1) 700px
+    rgba(20, 22, 60, 0.3) 50px,
+    rgba(20, 22, 60, 1) 700px
   );
   display: flex;
   justify-content: center;

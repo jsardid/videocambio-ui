@@ -21,13 +21,13 @@ const CarouselTitle = styled.h3`
 `;
 
 const SliderContainer = styled.div`
-  background-color: #00000057;
+  background-color: rgba(0, 0, 0, 0.45);
   box-shadow: 0px 0px 10px #000000;
 `;
 const changeColor = keyframes`
-    0%   {background-color: #00000045;}
-    50%  {background-color: #00000099;}
-    100% {background-color: #00000045;}
+    0%   {background-color: rgba(0, 0, 0, 0.15);}
+    50%  {background-color: rgba(0, 0, 0, 0.6);}
+    100% {background-color: rgba(0, 0, 0, 0.15);}
 `;
 
 const SpinnerContainer = styled.div`
